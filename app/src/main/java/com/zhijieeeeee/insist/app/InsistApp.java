@@ -8,6 +8,9 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
 import com.zhijieeeeee.insist.R;
+import com.zhijieeeeee.insist.dagger.component.AppComponent;
+import com.zhijieeeeee.insist.dagger.component.DaggerAppComponent;
+import com.zhijieeeeee.insist.dagger.module.AppModule;
 
 /**
  * Created by tangzhijie on 2018/3/23.
@@ -15,9 +18,13 @@ import com.zhijieeeeee.insist.R;
 
 public class InsistApp extends Application {
 
+    public static InsistApp mInstance;
+    public static AppComponent appComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstance = this;
         initLeakCanary();
         initLogger();
     }
@@ -37,5 +44,14 @@ public class InsistApp extends Application {
             Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().
                     tag(getString(R.string.app_name)).build()));
         }
+    }
+
+    public static AppComponent getAppComponent() {
+        if (appComponent == null) {
+            appComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(mInstance))
+                    .build();
+        }
+        return appComponent;
     }
 }
