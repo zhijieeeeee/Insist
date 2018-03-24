@@ -18,13 +18,4 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     public MainPresenter() {
     }
 
-    @Override
-    public void getData() {
-        List<String> data = new ArrayList<>();
-        data.add("1");
-        data.add("2");
-        data.add("3");
-        data.add("4");
-        mView.showData(data);
-    }
 }

@@ -1,7 +1,7 @@
 package com.zhijieeeeee.insist.dagger.module;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 import com.zhijieeeeee.insist.dagger.scope.FragmentScope;
 
@@ -23,7 +23,7 @@ public class FragmentModule {
 
     @Provides
     @FragmentScope
-    Activity provideActivity() {
+    FragmentActivity provideActivity() {
         return fragment.getActivity();
     }
 

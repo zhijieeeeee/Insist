@@ -1,7 +1,11 @@
 package com.zhijieeeeee.insist.ui.fragment;
 
 import android.os.Bundle;
-import android.widget.Button;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 
 import com.zhijieeeeee.insist.R;
 import com.zhijieeeeee.insist.base.activity.BaseFragment;
@@ -10,7 +14,6 @@ import com.zhijieeeeee.insist.presenter.PlanPresenter;
 import com.zhijieeeeee.insist.util.ToastUtil;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by tangzhijie on 2018/3/23.
@@ -18,8 +21,11 @@ import butterknife.OnClick;
 
 public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanContract.View {
 
-    @BindView(R.id.btn_plan)
-    Button btnPlan;
+    @BindView(R.id.tab)
+    TabLayout tab;
+    @BindView(R.id.vp)
+    ViewPager vp;
+    private String[] titles = new String[]{"每日计划", "每周计划", "2018年"};
 
     @Override
     public void showLoading() {
@@ -48,7 +54,10 @@ public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanCon
 
     @Override
     public void initView() {
-
+        VpAdapter adapter = new VpAdapter(mActivity.getSupportFragmentManager());
+        vp.setAdapter(adapter);
+        tab.setupWithViewPager(vp);
+        tab.setTabMode(TabLayout.MODE_FIXED);
     }
 
     @Override
@@ -61,9 +70,32 @@ public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanCon
         return false;
     }
 
+    private class VpAdapter extends FragmentPagerAdapter {
 
-    @OnClick(R.id.btn_plan)
-    public void onViewClicked() {
-        mPresenter.getData();
+        public VpAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (position == 0) {
+                return new PlanDayFragment();
+            } else if (position == 1) {
+                return new PlanWeekFragment();
+            } else {
+                return new PlanYearFragment();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return titles.length;
+        }
     }
+
 }

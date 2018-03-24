@@ -3,17 +3,17 @@ package com.zhijieeeeee.insist.contract;
 import com.zhijieeeeee.insist.base.presenter.AbstractPresenter;
 import com.zhijieeeeee.insist.base.view.BaseView;
 
-import java.util.List;
-
 /**
- * Created by tangzhijie on 2018/3/23.
+ * Created by Ashin on 2018/3/24.
  */
 
-public interface MainContract {
+public interface SettingContract {
 
     interface View extends BaseView {
+
     }
 
     interface Presenter extends AbstractPresenter<View> {
+
     }
 }

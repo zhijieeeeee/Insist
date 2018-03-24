@@ -1,5 +1,8 @@
 package com.zhijieeeeee.insist.base.activity;
 
+import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+
 import com.zhijieeeeee.insist.app.InsistApp;
 import com.zhijieeeeee.insist.base.presenter.BasePresenter;
 import com.zhijieeeeee.insist.base.view.BaseView;
@@ -17,6 +20,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractBase
 
     @Inject
     public T mPresenter;
+    @Inject
+    public FragmentActivity mActivity;
 
     @Override
     public void attachAndInject() {
