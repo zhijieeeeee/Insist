@@ -1,6 +1,7 @@
 package com.zhijieeeeee.insist.dagger.module;
 
 import com.zhijieeeeee.insist.app.InsistApp;
+import com.zhijieeeeee.insist.util.DataManager;
 
 import javax.inject.Singleton;
 
@@ -24,5 +25,11 @@ public class AppModule {
     @Singleton
     InsistApp provideInsistApp() {
         return app;
+    }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager() {
+        return new DataManager();
     }
 }

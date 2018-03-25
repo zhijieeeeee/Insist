@@ -33,6 +33,11 @@ public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanCon
     }
 
     @Override
+    public void closeLoading() {
+
+    }
+
+    @Override
     public void showData(String msg) {
         ToastUtil.show(msg);
     }
@@ -55,6 +60,7 @@ public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanCon
     @Override
     public void initView() {
         VpAdapter adapter = new VpAdapter(mActivity.getSupportFragmentManager());
+        vp.setOffscreenPageLimit(3);
         vp.setAdapter(adapter);
         tab.setupWithViewPager(vp);
         tab.setTabMode(TabLayout.MODE_FIXED);

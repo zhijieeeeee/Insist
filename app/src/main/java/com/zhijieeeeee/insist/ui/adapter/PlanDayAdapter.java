@@ -25,7 +25,7 @@ public class PlanDayAdapter extends BaseQuickAdapter<Plan, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, Plan item) {
         LinearLayout ll_plan = helper.getView(R.id.ll_plan);
         helper.setText(R.id.tv_plan, item.getName());
-        if (item.isDone()) {//完成
+        if (item.getDone() == 1) {//完成
             ll_plan.setAlpha(0.4f);
             helper.setVisible(R.id.tv_congratulation, true);
             helper.setVisible(R.id.tv_done, false);

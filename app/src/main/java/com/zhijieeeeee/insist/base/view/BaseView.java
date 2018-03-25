@@ -7,4 +7,6 @@ package com.zhijieeeeee.insist.base.view;
 public interface BaseView {
 
     void showLoading();
+
+    void closeLoading();
 }

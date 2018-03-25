@@ -19,6 +19,11 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
     }
 
     @Override
+    public void closeLoading() {
+
+    }
+
+    @Override
     protected void initInject() {
         getFragmentComponent().inject(this);
     }

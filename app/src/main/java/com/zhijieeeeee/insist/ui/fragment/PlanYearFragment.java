@@ -20,6 +20,11 @@ public class PlanYearFragment extends BaseFragment<PlanYearPresenter> implements
     }
 
     @Override
+    public void closeLoading() {
+
+    }
+
+    @Override
     public int getContentViewLayoutId() {
         return R.layout.plan_year_fragment;
     }

@@ -1,6 +1,7 @@
 package com.zhijieeeeee.insist.dagger.module;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 
 import com.zhijieeeeee.insist.dagger.scope.ActivityScope;
 
@@ -24,5 +25,13 @@ public class ActivityModule {
     @ActivityScope
     Activity provideActivity() {
         return activity;
+    }
+
+    @Provides
+    @ActivityScope
+    ProgressDialog provideProgressDialog(Activity activity) {
+        ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setMessage("正在加载中");
+        return dialog;
     }
 }

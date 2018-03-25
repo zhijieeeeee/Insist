@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -15,12 +14,12 @@ import com.zhijieeeeee.insist.contract.MainContract;
 import com.zhijieeeeee.insist.presenter.MainPresenter;
 import com.zhijieeeeee.insist.ui.fragment.PlanFragment;
 import com.zhijieeeeee.insist.ui.fragment.SettingFragment;
+import com.zhijieeeeee.insist.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
@@ -36,9 +35,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private List<Fragment> fragmentList;
     private List<TextView> textViewList;
 
+    private long exitTime = 0;
 
     @Override
     public void showLoading() {
+
+    }
+
+    @Override
+    public void closeLoading() {
 
     }
 
@@ -108,5 +113,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
         ft.show(targetFragment);
         ft.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - exitTime > 2000) {
+            ToastUtil.show("再按一次退出");
+            exitTime = System.currentTimeMillis();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

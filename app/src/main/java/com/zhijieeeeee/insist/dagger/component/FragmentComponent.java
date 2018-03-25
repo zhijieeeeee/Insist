@@ -1,6 +1,6 @@
 package com.zhijieeeeee.insist.dagger.component;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.v4.app.FragmentActivity;
 
 import com.zhijieeeeee.insist.dagger.module.FragmentModule;
@@ -20,6 +20,8 @@ import dagger.Component;
 public interface FragmentComponent {
 
     FragmentActivity getActivity();
+
+    ProgressDialog getProgressDialog();
 
     void inject(PlanFragment planFragment);
 

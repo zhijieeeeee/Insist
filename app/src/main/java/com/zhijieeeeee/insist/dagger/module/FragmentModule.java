@@ -1,8 +1,10 @@
 package com.zhijieeeeee.insist.dagger.module;
 
+import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import com.zhijieeeeee.insist.dagger.scope.ActivityScope;
 import com.zhijieeeeee.insist.dagger.scope.FragmentScope;
 
 import dagger.Module;
@@ -27,4 +29,11 @@ public class FragmentModule {
         return fragment.getActivity();
     }
 
+    @Provides
+    @FragmentScope
+    ProgressDialog provideProgressDialog(FragmentActivity activity) {
+        ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setMessage("请稍等");
+        return dialog;
+    }
 }

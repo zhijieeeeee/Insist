@@ -2,6 +2,7 @@ package com.zhijieeeeee.insist.dagger.component;
 
 import com.zhijieeeeee.insist.app.InsistApp;
 import com.zhijieeeeee.insist.dagger.module.AppModule;
+import com.zhijieeeeee.insist.util.DataManager;
 
 import javax.inject.Singleton;
 
@@ -16,4 +17,6 @@ import dagger.Component;
 public interface AppComponent {
 
     InsistApp getApp();
+
+    DataManager getDataManager();
 }

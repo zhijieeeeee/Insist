@@ -15,10 +15,16 @@ public interface PlanDayContract {
     interface View extends BaseView {
 
         void showPlanList(List<Plan> list);
+
+        void notifyListChange();
+
+        void refreshComplete();
     }
 
     interface Presenter extends AbstractPresenter<View> {
 
-        void getPlanList();
+        void getPlanList(boolean showLoading);
+
+        void setPlanDone(Plan plan);
     }
 }

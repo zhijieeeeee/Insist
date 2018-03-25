@@ -1,17 +1,23 @@
 package com.zhijieeeeee.insist.bean;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by Ashin on 2018/3/24.
  */
 
-public class Plan {
+public class Plan extends BmobObject{
 
+    private String day;
     private String name;
-    private boolean done;
+    private int done;
 
-    public Plan(String name, boolean done) {
-        this.name = name;
-        this.done = done;
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public String getName() {
@@ -22,11 +28,11 @@ public class Plan {
         this.name = name;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 }

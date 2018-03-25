@@ -1,6 +1,7 @@
 package com.zhijieeeeee.insist.dagger.component;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 
 import com.zhijieeeeee.insist.ui.activity.MainActivity;
 import com.zhijieeeeee.insist.dagger.module.ActivityModule;
@@ -17,6 +18,8 @@ import dagger.Component;
 public interface ActivityComponent {
 
     Activity getActivity();
+
+    ProgressDialog getProgressDialog();
 
     void inject(MainActivity mainActivity);
 }

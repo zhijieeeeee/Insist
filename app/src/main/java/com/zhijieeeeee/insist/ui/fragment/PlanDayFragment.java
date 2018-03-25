@@ -1,7 +1,9 @@
 package com.zhijieeeeee.insist.ui.fragment;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +16,11 @@ import com.zhijieeeeee.insist.bean.Plan;
 import com.zhijieeeeee.insist.contract.PlanDayContract;
 import com.zhijieeeeee.insist.presenter.PlanDayPresenter;
 import com.zhijieeeeee.insist.ui.adapter.PlanDayAdapter;
-import com.zhijieeeeee.insist.util.ToastUtil;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -28,10 +32,27 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
 
     @BindView(R.id.rv)
     RecyclerView rv;
+    @BindView(R.id.srfl)
+    SwipeRefreshLayout srfl;
+
+    @Inject
+    ProgressDialog progressDialog;
+
+    private List<Plan> mList;
+    private PlanDayAdapter planDayAdapter;
 
     @Override
     public void showLoading() {
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
 
+    @Override
+    public void closeLoading() {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     @Override
@@ -41,17 +62,44 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
 
     @Override
     public void before(Bundle savedInstanceState) {
-
+        mList = new ArrayList<>();
     }
 
     @Override
     public void initView() {
         rv.setLayoutManager(new LinearLayoutManager(mActivity));
+        srfl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.getPlanList(false);
+            }
+        });
     }
 
     @Override
     public void initData() {
-        mPresenter.getPlanList();
+        planDayAdapter = new PlanDayAdapter(mList);
+        planDayAdapter.bindToRecyclerView(rv);
+        planDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, final int position) {
+                new AlertDialog.Builder(mActivity)
+                        .setTitle("你确定完成了吗？")
+                        .setPositiveButton("完成了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mPresenter.setPlanDone(mList.get(position));
+                            }
+                        })
+                        .setNegativeButton("还没", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        mPresenter.getPlanList(true);
     }
 
     @Override
@@ -66,26 +114,18 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
 
     @Override
     public void showPlanList(List<Plan> list) {
-        PlanDayAdapter planDayAdapter = new PlanDayAdapter(list);
-        planDayAdapter.bindToRecyclerView(rv);
-        planDayAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                new AlertDialog.Builder(mActivity)
-                        .setTitle("你确定完成了吗？")
-                        .setPositiveButton("完成了", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+        mList.clear();
+        mList.addAll(list);
+        planDayAdapter.notifyDataSetChanged();
+    }
 
-                            }
-                        })
-                        .setNegativeButton("还没", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).create().show();
-            }
-        });
+    @Override
+    public void notifyListChange() {
+        planDayAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void refreshComplete() {
+        srfl.setRefreshing(false);
     }
 }

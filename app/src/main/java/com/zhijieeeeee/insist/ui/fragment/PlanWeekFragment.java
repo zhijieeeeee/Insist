@@ -20,6 +20,11 @@ public class PlanWeekFragment extends BaseFragment<PlanWeekPresenter> implements
     }
 
     @Override
+    public void closeLoading() {
+
+    }
+
+    @Override
     public int getContentViewLayoutId() {
         return R.layout.plan_week_fragment;
     }
