@@ -25,7 +25,6 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
 
     @Override
     protected void initInject() {
-        getFragmentComponent().inject(this);
     }
 
     @Override

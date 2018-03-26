@@ -162,6 +162,8 @@ public class DataManager {
             public void done(BmobException e) {
                 if (e == null) {
                     onUpdateListener.onUpdateSuccess();
+                } else {
+                    onUpdateListener.onUpdateFail(e.getMessage());
                 }
             }
         });
@@ -183,6 +185,8 @@ public class DataManager {
 
     public interface OnUpdateListener {
         void onUpdateSuccess();
+
+        void onUpdateFail(String failReason);
     }
 
     public interface OnFindReadingBook {

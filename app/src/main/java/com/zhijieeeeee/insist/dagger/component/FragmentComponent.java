@@ -26,8 +26,6 @@ public interface FragmentComponent {
 
     void inject(PlanFragment planFragment);
 
-    void inject(SettingFragment settingFragment);
-
     void inject(PlanDayFragment planDayFragment);
 
     void inject(BookFragment bookFragment);

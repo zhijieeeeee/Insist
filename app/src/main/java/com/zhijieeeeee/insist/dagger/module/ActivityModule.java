@@ -31,7 +31,7 @@ public class ActivityModule {
     @ActivityScope
     ProgressDialog provideProgressDialog(Activity activity) {
         ProgressDialog dialog = new ProgressDialog(activity);
-        dialog.setMessage("正在加载中");
+        dialog.setMessage("请稍等");
         return dialog;
     }
 }

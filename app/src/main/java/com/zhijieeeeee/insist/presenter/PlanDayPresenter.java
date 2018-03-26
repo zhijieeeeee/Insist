@@ -47,7 +47,6 @@ public class PlanDayPresenter extends BasePresenter<PlanDayContract.View> implem
 
                     @Override
                     public void onInsertFail(String failReason) {
-                        ToastUtil.show(failReason);
                         mView.closeLoading();
                         mView.refreshComplete();
                     }
@@ -63,6 +62,12 @@ public class PlanDayPresenter extends BasePresenter<PlanDayContract.View> implem
             @Override
             public void onUpdateSuccess() {
                 mView.notifyListChange();
+                mView.closeLoading();
+            }
+
+            @Override
+            public void onUpdateFail(String failReason) {
+                ToastUtil.show(failReason);
                 mView.closeLoading();
             }
         });

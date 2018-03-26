@@ -87,8 +87,15 @@ public class BookPresenter extends BasePresenter<BookContract.View> implements B
         mDataManager.setReadComplete(book, new DataManager.OnUpdateListener() {
             @Override
             public void onUpdateSuccess() {
+                ToastUtil.show("恭喜读完了这本书");
                 mView.showReadingBook(null);
                 getReadBookList(true);
+            }
+
+            @Override
+            public void onUpdateFail(String failReason) {
+                ToastUtil.show(failReason);
+                mView.closeLoading();
             }
         });
     }
