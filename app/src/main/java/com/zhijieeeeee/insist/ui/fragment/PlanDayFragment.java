@@ -1,6 +1,5 @@
 package com.zhijieeeeee.insist.ui.fragment;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,8 +19,6 @@ import com.zhijieeeeee.insist.ui.adapter.PlanDayAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 
 /**
@@ -35,25 +32,8 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
     @BindView(R.id.srfl)
     SwipeRefreshLayout srfl;
 
-    @Inject
-    ProgressDialog progressDialog;
-
     private List<Plan> mList;
     private PlanDayAdapter planDayAdapter;
-
-    @Override
-    public void showLoading() {
-        if (!progressDialog.isShowing()) {
-            progressDialog.show();
-        }
-    }
-
-    @Override
-    public void closeLoading() {
-        if (progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
-    }
 
     @Override
     public int getContentViewLayoutId() {
@@ -91,12 +71,7 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
                                 mPresenter.setPlanDone(mList.get(position));
                             }
                         })
-                        .setNegativeButton("还没", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).create().show();
+                        .setNegativeButton("还没",null).create().show();
             }
         });
         mPresenter.getPlanList(true);

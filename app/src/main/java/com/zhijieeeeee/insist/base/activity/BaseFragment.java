@@ -1,6 +1,7 @@
 package com.zhijieeeeee.insist.base.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.v4.app.FragmentActivity;
 
 import com.zhijieeeeee.insist.app.InsistApp;
@@ -22,6 +23,22 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractBase
     public T mPresenter;
     @Inject
     public FragmentActivity mActivity;
+    @Inject
+    public ProgressDialog progressDialog;
+
+    @Override
+    public void showLoading() {
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    @Override
+    public void closeLoading() {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
 
     @Override
     public void attachAndInject() {
