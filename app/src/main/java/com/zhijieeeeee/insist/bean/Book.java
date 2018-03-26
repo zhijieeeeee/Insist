@@ -7,11 +7,24 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class Book extends BmobObject {
+    //书名
     private String name;
+    //开始读时间
     private String startDate;
+    //读完时间
     private String endDate;
     //0正在读，1读完了
     private int status;
+    //书评
+    private String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public String getName() {
         return name;

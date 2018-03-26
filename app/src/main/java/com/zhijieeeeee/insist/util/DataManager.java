@@ -96,6 +96,7 @@ public class DataManager {
         book.setStatus(0);
         book.setStartDate(DateUtil.getNowDay());
         book.setEndDate("");
+        book.setComment("");
         book.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
