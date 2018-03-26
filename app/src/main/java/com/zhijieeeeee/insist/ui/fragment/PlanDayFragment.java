@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhijieeeeee.insist.R;
-import com.zhijieeeeee.insist.base.activity.BaseFragment;
+import com.zhijieeeeee.insist.base.fragment.BaseFragment;
 import com.zhijieeeeee.insist.bean.Plan;
 import com.zhijieeeeee.insist.contract.PlanDayContract;
 import com.zhijieeeeee.insist.presenter.PlanDayPresenter;

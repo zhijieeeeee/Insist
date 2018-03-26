@@ -10,6 +10,7 @@ import com.zhijieeeeee.insist.util.ActivityManager;
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by tangzhijie on 2018/3/23.
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 
 public abstract class AbstractBaseActivity extends AppCompatActivity {
 
+    private Unbinder unBinder;
     public Activity mActivity;
 
     @Override
@@ -24,7 +26,7 @@ public abstract class AbstractBaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewLayoutId());
         mActivity = this;
-        ButterKnife.bind(this);
+        unBinder = ButterKnife.bind(this);
         before(savedInstanceState);
         attachAndInject();
         initView();
@@ -42,6 +44,7 @@ public abstract class AbstractBaseActivity extends AppCompatActivity {
             EventBus.getDefault().unregister(this);
         }
         ActivityManager.removeActivity(this);
+        unBinder.unbind();
     }
 
     /**

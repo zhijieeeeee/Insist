@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.zhijieeeeee.insist.R;
-import com.zhijieeeeee.insist.base.activity.BaseFragment;
+import com.zhijieeeeee.insist.base.fragment.BaseFragment;
 import com.zhijieeeeee.insist.contract.PlanContract;
 import com.zhijieeeeee.insist.presenter.PlanPresenter;
 import com.zhijieeeeee.insist.util.ToastUtil;

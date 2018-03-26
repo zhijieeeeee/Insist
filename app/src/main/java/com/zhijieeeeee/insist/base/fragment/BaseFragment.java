@@ -1,6 +1,5 @@
-package com.zhijieeeeee.insist.base.activity;
+package com.zhijieeeeee.insist.base.fragment;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.support.v4.app.FragmentActivity;
 

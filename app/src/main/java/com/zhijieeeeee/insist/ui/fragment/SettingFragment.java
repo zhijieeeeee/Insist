@@ -3,7 +3,7 @@ package com.zhijieeeeee.insist.ui.fragment;
 import android.os.Bundle;
 
 import com.zhijieeeeee.insist.R;
-import com.zhijieeeeee.insist.base.activity.BaseFragment;
+import com.zhijieeeeee.insist.base.fragment.BaseFragment;
 import com.zhijieeeeee.insist.contract.SettingContract;
 import com.zhijieeeeee.insist.presenter.SettingPresenter;
 

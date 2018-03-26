@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhijieeeeee.insist.R;
-import com.zhijieeeeee.insist.base.activity.BaseFragment;
+import com.zhijieeeeee.insist.base.fragment.BaseFragment;
 import com.zhijieeeeee.insist.bean.Book;
 import com.zhijieeeeee.insist.contract.BookContract;
 import com.zhijieeeeee.insist.presenter.BookPresenter;

@@ -1,4 +1,4 @@
-package com.zhijieeeeee.insist.base.activity;
+package com.zhijieeeeee.insist.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by tangzhijie on 2018/3/23.
@@ -17,11 +18,13 @@ import butterknife.ButterKnife;
 
 public abstract class AbstractBaseFragment extends Fragment {
 
+    private Unbinder unBinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View contentView = inflater.inflate(getContentViewLayoutId(), container, false);
-        ButterKnife.bind(this, contentView);
+        unBinder = ButterKnife.bind(this, contentView);
         return contentView;
     }
 
@@ -43,6 +46,7 @@ public abstract class AbstractBaseFragment extends Fragment {
         if (registerEventBus()) {
             EventBus.getDefault().unregister(this);
         }
+        unBinder.unbind();
     }
 
     /**
