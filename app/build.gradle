@@ -90,4 +90,8 @@ dependencies {
     compile 'cn.bmob.android:bmob-sdk:3.6.0'
     //bmob
 
+    //lifecycle组件
+    implementation "android.arch.lifecycle:common-java8:1.1.1"
+    //lifecycle组件
+
 }

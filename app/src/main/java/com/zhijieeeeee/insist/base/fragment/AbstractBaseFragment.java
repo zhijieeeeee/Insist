@@ -31,8 +31,8 @@ public abstract class AbstractBaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        before(savedInstanceState);
         attachAndInject();
+        before(savedInstanceState);
         initView();
         initData();
         if (registerEventBus()) {

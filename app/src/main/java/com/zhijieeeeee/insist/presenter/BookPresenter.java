@@ -1,8 +1,12 @@
 package com.zhijieeeeee.insist.presenter;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
+
+import com.orhanobut.logger.Logger;
 import com.zhijieeeeee.insist.base.presenter.BasePresenter;
 import com.zhijieeeeee.insist.bean.Book;
-import com.zhijieeeeee.insist.bean.Plan;
 import com.zhijieeeeee.insist.contract.BookContract;
 import com.zhijieeeeee.insist.util.DataManager;
 import com.zhijieeeeee.insist.util.ToastUtil;
@@ -15,7 +19,7 @@ import javax.inject.Inject;
  * Created by tangzhijie on 2018/3/26.
  */
 
-public class BookPresenter extends BasePresenter<BookContract.View> implements BookContract.Presenter {
+public class BookPresenter extends BasePresenter<BookContract.View> implements BookContract.Presenter, LifecycleObserver {
 
     private DataManager mDataManager;
 
@@ -98,5 +102,17 @@ public class BookPresenter extends BasePresenter<BookContract.View> implements B
                 mView.closeLoading();
             }
         });
+    }
+
+    //下面是测试Lifecycle组件
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    void onCreate() {
+        getReadingBook();
+        getReadBookList(true);
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    void onDestroy() {
     }
 }

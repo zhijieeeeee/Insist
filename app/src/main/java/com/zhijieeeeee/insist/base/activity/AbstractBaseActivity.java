@@ -27,8 +27,8 @@ public abstract class AbstractBaseActivity extends AppCompatActivity {
         setContentView(getContentViewLayoutId());
         mActivity = this;
         unBinder = ButterKnife.bind(this);
-        before(savedInstanceState);
         attachAndInject();
+        before(savedInstanceState);
         initView();
         initData();
         if (registerEventBus()) {
