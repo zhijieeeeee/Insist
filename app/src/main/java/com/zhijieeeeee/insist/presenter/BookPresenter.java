@@ -9,6 +9,7 @@ import com.zhijieeeeee.insist.base.presenter.BasePresenter;
 import com.zhijieeeeee.insist.bean.Book;
 import com.zhijieeeeee.insist.contract.BookContract;
 import com.zhijieeeeee.insist.util.DataManager;
+import com.zhijieeeeee.insist.util.SpManager;
 import com.zhijieeeeee.insist.util.ToastUtil;
 
 import java.util.List;
@@ -22,10 +23,12 @@ import javax.inject.Inject;
 public class BookPresenter extends BasePresenter<BookContract.View> implements BookContract.Presenter, LifecycleObserver {
 
     private DataManager mDataManager;
+    private SpManager spManager;
 
     @Inject
-    public BookPresenter(DataManager mDataManager) {
+    public BookPresenter(DataManager mDataManager, SpManager spManager) {
         this.mDataManager = mDataManager;
+        this.spManager = spManager;
     }
 
     @Override

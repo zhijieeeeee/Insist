@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="firework.json" />
+
+    <Button
+        android:id="@+id/btn_modify_week"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="暂无" />
+        android:layout_height="wrap_content"
+        android:text="填写周计划文本" />
+
+    <Button
+        android:id="@+id/btn_modify_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="填写年计划文本" />
 </LinearLayout>

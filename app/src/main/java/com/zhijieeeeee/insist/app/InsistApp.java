@@ -1,7 +1,8 @@
 package com.zhijieeeeee.insist.app;
 
 import android.app.Application;
-import android.support.v4.BuildConfig;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -45,8 +46,8 @@ public class InsistApp extends Application {
     private void initLogger() {
         //DEBUG版本才打控制台log
 //        if (BuildConfig.DEBUG) {
-            Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().
-                    tag(getString(R.string.app_name)).build()));
+        Logger.addLogAdapter(new AndroidLogAdapter(PrettyFormatStrategy.newBuilder().
+                tag(getString(R.string.app_name)).build()));
 //        }
     }
 
@@ -65,5 +66,11 @@ public class InsistApp extends Application {
                     .build();
         }
         return appComponent;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
