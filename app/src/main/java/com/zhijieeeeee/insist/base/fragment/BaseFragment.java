@@ -27,14 +27,14 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractBase
 
     @Override
     public void showLoading() {
-        if (!progressDialog.isShowing()) {
+        if (progressDialog != null && !progressDialog.isShowing()) {
             progressDialog.show();
         }
     }
 
     @Override
     public void closeLoading() {
-        if (progressDialog.isShowing()) {
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
     }

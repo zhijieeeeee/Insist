@@ -28,16 +28,6 @@ public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanCon
     private String[] titles = new String[]{"每日计划", "每周计划", "2018年"};
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void closeLoading() {
-
-    }
-
-    @Override
     public void showData(String msg) {
         ToastUtil.show(msg);
     }

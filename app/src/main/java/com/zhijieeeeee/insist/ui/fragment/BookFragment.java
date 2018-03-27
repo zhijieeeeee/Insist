@@ -31,6 +31,7 @@ import butterknife.OnClick;
  */
 
 public class BookFragment extends BaseFragment<BookPresenter> implements BookContract.View {
+
     @BindView(R.id.ll_reading)
     LinearLayout llReading;
     @BindView(R.id.tv_book_name)

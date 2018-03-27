@@ -12,15 +12,6 @@ import com.zhijieeeeee.insist.presenter.PlanYearPresenter;
  */
 
 public class PlanYearFragment extends BaseFragment<PlanYearPresenter> implements PlanYearContract.View {
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void closeLoading() {
-
-    }
 
     @Override
     public int getContentViewLayoutId() {

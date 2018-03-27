@@ -14,16 +14,6 @@ import com.zhijieeeeee.insist.presenter.SettingPresenter;
 public class SettingFragment extends BaseFragment<SettingPresenter> implements SettingContract.View {
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void closeLoading() {
-
-    }
-
-    @Override
     protected void initInject() {
     }
 

@@ -42,16 +42,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private long exitTime = 0;
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void closeLoading() {
-
-    }
-
-    @Override
     public int getContentViewLayoutId() {
         return R.layout.activity_main;
     }

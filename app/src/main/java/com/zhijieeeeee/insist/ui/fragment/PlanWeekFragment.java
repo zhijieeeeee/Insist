@@ -12,15 +12,6 @@ import com.zhijieeeeee.insist.presenter.PlanWeekPresenter;
  */
 
 public class PlanWeekFragment extends BaseFragment<PlanWeekPresenter> implements PlanWeekContract.View {
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void closeLoading() {
-
-    }
 
     @Override
     public int getContentViewLayoutId() {

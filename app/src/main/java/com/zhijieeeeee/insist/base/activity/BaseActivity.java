@@ -1,5 +1,7 @@
 package com.zhijieeeeee.insist.base.activity;
 
+import android.app.ProgressDialog;
+
 import com.zhijieeeeee.insist.app.InsistApp;
 import com.zhijieeeeee.insist.base.presenter.BasePresenter;
 import com.zhijieeeeee.insist.base.view.BaseView;
@@ -17,6 +19,23 @@ public abstract class BaseActivity<T extends BasePresenter> extends AbstractBase
 
     @Inject
     public T mPresenter;
+    @Inject
+    public ProgressDialog progressDialog;
+
+    @Override
+    public void showLoading() {
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    @Override
+    public void closeLoading() {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
 
     @Override
     public void attachAndInject() {
