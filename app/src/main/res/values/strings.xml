@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Insist</string>
+    <string name="learn_english">学习英语，你放弃过很多次了，这次也肯定会很困难，但是是时候走出舒适区了，慢慢来，不要想一步登天，循序渐进，一点一点积累</string>
+    <string name="read">长的书，2周一本，短的书，1周一本</string>
 </resources>

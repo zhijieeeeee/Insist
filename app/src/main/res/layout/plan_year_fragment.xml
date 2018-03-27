@@ -6,6 +6,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="20dp"
         android:gravity="center"
-        android:text="暂无" />
+        android:text="@string/learn_english"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp" />
 </LinearLayout>
