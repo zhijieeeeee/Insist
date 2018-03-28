@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.ViewGroup;
 
 import com.zhijieeeeee.insist.R;
 import com.zhijieeeeee.insist.base.fragment.BaseFragment;
@@ -50,7 +51,7 @@ public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanCon
     @Override
     public void initView() {
         VpAdapter adapter = new VpAdapter(mActivity.getSupportFragmentManager());
-        vp.setOffscreenPageLimit(3);
+        vp.setOffscreenPageLimit(1);
         vp.setAdapter(adapter);
         tab.setupWithViewPager(vp);
         tab.setTabMode(TabLayout.MODE_FIXED);
@@ -86,6 +87,12 @@ public class PlanFragment extends BaseFragment<PlanPresenter> implements PlanCon
             } else {
                 return new PlanYearFragment();
             }
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            //复用Fragment布局
+            //super.destroyItem(container, position, object);
         }
 
         @Override
