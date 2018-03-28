@@ -1,6 +1,7 @@
 package com.zhijieeeeee.insist.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.zhijieeeeee.insist.R;
 import com.zhijieeeeee.insist.base.fragment.BaseFragment;
@@ -30,12 +31,21 @@ public class PlanWeekFragment extends BaseFragment<PlanWeekPresenter> implements
 
     @Override
     public void initData() {
-
     }
 
     @Override
     public boolean registerEventBus() {
         return false;
+    }
+
+    @Override
+    public void onFragmentFirstVisible() {
+        Log.i("Insist", "PlanWeekFragment.onFragmentFirstVisible");
+    }
+
+    @Override
+    public void onFragmentVisibleChange(boolean visible) {
+        Log.i("Insist", "PlanWeekFragment.visible="+visible);
     }
 
     @Override

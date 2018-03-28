@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.zhijieeeeee.insist.R;
 import com.zhijieeeeee.insist.base.fragment.BaseFragment;
 import com.zhijieeeeee.insist.bean.Book;
@@ -97,14 +96,13 @@ public class BookFragment extends BaseFragment<BookPresenter> implements BookCon
     @Override
     public void initView() {
         rvRecord.setLayoutManager(new LinearLayoutManager(mActivity));
+        bookAdapter = new BookAdapter(bookList);
+        bookAdapter.bindToRecyclerView(rvRecord);
         getLifecycle().addObserver(mPresenter);
     }
 
     @Override
     public void initData() {
-        bookAdapter = new BookAdapter(bookList);
-        bookAdapter.bindToRecyclerView(rvRecord);
-
         //使用LifeCycle绑定生命周期后，就不用再这里调用了，直接在Presenter里的onCreate里调用
         //LifeCycle的onCreate会在Activity/Fragment调用onCreate后，再调用
 //        mPresenter.getReadingBook();

@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -71,7 +72,7 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
                                 mPresenter.setPlanDone(mList.get(position));
                             }
                         })
-                        .setNegativeButton("还没",null).create().show();
+                        .setNegativeButton("还没", null).create().show();
             }
         });
         mPresenter.getPlanList(true);
@@ -80,6 +81,16 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
     @Override
     public boolean registerEventBus() {
         return false;
+    }
+
+    @Override
+    public void onFragmentFirstVisible() {
+        Log.i("Insist", "PlanDayFragment.onFragmentFirstVisible");
+    }
+
+    @Override
+    public void onFragmentVisibleChange(boolean visible) {
+        Log.i("Insist", "PlanDayFragment.visible=" + visible);
     }
 
     @Override
