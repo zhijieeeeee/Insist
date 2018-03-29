@@ -48,7 +48,8 @@ public class PlanDayFragment extends BaseFragment<PlanDayPresenter> implements P
 
     @Override
     public void initView() {
-        rv.setLayoutManager(new LinearLayoutManager(mActivity));
+        //可以在布局中设置
+//        rv.setLayoutManager(new LinearLayoutManager(mActivity));
         srfl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
