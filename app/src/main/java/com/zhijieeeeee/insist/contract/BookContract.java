@@ -3,7 +3,6 @@ package com.zhijieeeeee.insist.contract;
 import com.zhijieeeeee.insist.base.presenter.AbstractPresenter;
 import com.zhijieeeeee.insist.base.view.BaseView;
 import com.zhijieeeeee.insist.bean.Book;
-import com.zhijieeeeee.insist.bean.Plan;
 
 import java.util.List;
 

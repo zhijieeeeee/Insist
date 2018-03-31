@@ -98,4 +98,8 @@ dependencies {
     compile 'com.airbnb.android:lottie:2.5.1'
     //lottie
 
+    //CalendarView
+    compile 'com.haibin:calendarview:3.2.8'
+    //CalendarView
+
 }

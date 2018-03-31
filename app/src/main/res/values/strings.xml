@@ -2,4 +2,5 @@
     <string name="app_name">Insist</string>
     <string name="learn_english">学习英语\n相信积累的力量，时间会给你回馈</string>
     <string name="read">长的书，2周一本，短的书，1周一本</string>
+    <string name="done_sum">你已经坚持了%d天，加油</string>
 </resources>

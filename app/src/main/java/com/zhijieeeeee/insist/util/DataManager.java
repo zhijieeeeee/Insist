@@ -1,19 +1,14 @@
 package com.zhijieeeeee.insist.util;
 
-import com.zhijieeeeee.insist.app.Constants;
 import com.zhijieeeeee.insist.bean.Book;
-import com.zhijieeeeee.insist.bean.Plan;
+import com.zhijieeeeee.insist.bean.Scheme;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobBatch;
-import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.datatype.BatchResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.QueryListListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -24,62 +19,55 @@ import cn.bmob.v3.listener.UpdateListener;
 public class DataManager {
 
     /**
-     * 获取当天计划
-     */
-    public void getCurrentDayPlan(final OnFindCurrentDayPlanListener onFindCurrentDayPlanListener) {
-        String day = DateUtil.getNowDay();
-        BmobQuery<Plan> query = new BmobQuery<>();
-        query.addWhereEqualTo("day", day);
-        query.findObjects(new FindListener<Plan>() {
-            @Override
-            public void done(List<Plan> list, BmobException e) {
-                if (e == null && list != null && list.size() != 0) {//查找成功
-                    onFindCurrentDayPlanListener.onGetCurrentDayPlanSuccess(list);
-                } else {//查找失败
-                    onFindCurrentDayPlanListener.onGetCurrentDayPlanFail();
-                }
-            }
-        });
-    }
-
-    /**
-     * 插入当天计划新条目
-     */
-    public void insertCurrentDayPlan(final OnInsertListener onInsertListener) {
-        String day = DateUtil.getNowDay();
-        List<BmobObject> planList = new ArrayList<>();
-        for (int i = 0; i < Constants.PLANS.length; i++) {
-            Plan plan = new Plan();
-            plan.setDay(day);
-            plan.setDone(0);
-            plan.setName(Constants.PLANS[i]);
-            planList.add(plan);
-        }
-        new BmobBatch().insertBatch(planList).doBatch(new QueryListListener<BatchResult>() {
-            @Override
-            public void done(List<BatchResult> list, BmobException e) {
-                if (e == null) {
-                    onInsertListener.onInsertSuccess();
-                } else {
-                    onInsertListener.onInsertFail(e.getMessage());
-                }
-            }
-        });
-
-    }
-
-    /**
-     * 设置某项任务完成
+     * 获取完成的日期列表
      *
-     * @param plan 任务
+     * @param onGetDoneDateListener
      */
-    public void setPlanDone(Plan plan, final OnUpdateListener onUpdateListener) {
-        plan.setDone(1);
-        plan.update(plan.getObjectId(), new UpdateListener() {
+    public void getDoneDateList(final OnGetDoneDateListener onGetDoneDateListener) {
+        BmobQuery<Scheme> query = new BmobQuery<>();
+        query.setLimit(500);
+        query.findObjects(new FindListener<Scheme>() {
             @Override
-            public void done(BmobException e) {
+            public void done(List<Scheme> list, BmobException e) {
+                if (e == null && list != null && list.size() != 0) {//查找成功
+                    onGetDoneDateListener.onSuccess(list);
+                } else {
+                    onGetDoneDateListener.onFail(e.getMessage());
+                }
+            }
+        });
+    }
+
+    /**
+     * 获取总的完成天数
+     */
+    public void getDoneSum(final OnGetDoneSumListener onGetDoneSumListener) {
+        BmobQuery<Scheme> query = new BmobQuery<>();
+        query.count(Scheme.class, new CountListener() {
+            @Override
+            public void done(Integer integer, BmobException e) {
                 if (e == null) {
-                    onUpdateListener.onUpdateSuccess();
+                    onGetDoneSumListener.onSuccess(integer);
+                }
+            }
+        });
+    }
+
+    /**
+     * 插入完成日期
+     */
+    public void addDoneDate(int year, int month, int day, final OnAddDoneDateListener onAddDoneDateListener) {
+        final Scheme scheme = new Scheme();
+        scheme.setYear(year);
+        scheme.setMonth(month);
+        scheme.setDay(day);
+        scheme.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null) {
+                    onAddDoneDateListener.onInsertSuccess(scheme);
+                } else {
+                    onAddDoneDateListener.onInsertFail(e.getMessage());
                 }
             }
         });
@@ -169,12 +157,22 @@ public class DataManager {
         });
     }
 
+    public interface OnGetDoneDateListener {
 
-    public interface OnFindCurrentDayPlanListener {
+        void onSuccess(List<Scheme> plans);
 
-        void onGetCurrentDayPlanSuccess(List<Plan> plans);
+        void onFail(String reason);
+    }
 
-        void onGetCurrentDayPlanFail();
+    public interface OnGetDoneSumListener {
+
+        void onSuccess(int sum);
+    }
+
+    public interface OnAddDoneDateListener {
+        void onInsertSuccess(Scheme scheme);
+
+        void onInsertFail(String failReason);
     }
 
     public interface OnInsertListener {

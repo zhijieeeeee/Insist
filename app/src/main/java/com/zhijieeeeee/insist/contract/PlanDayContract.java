@@ -1,8 +1,8 @@
 package com.zhijieeeeee.insist.contract;
 
+import com.haibin.calendarview.Calendar;
 import com.zhijieeeeee.insist.base.presenter.AbstractPresenter;
 import com.zhijieeeeee.insist.base.view.BaseView;
-import com.zhijieeeeee.insist.bean.Plan;
 
 import java.util.List;
 
@@ -14,17 +14,19 @@ public interface PlanDayContract {
 
     interface View extends BaseView {
 
-        void showPlanList(List<Plan> list);
+        void showDoneDateList(List<Calendar> list);
 
-        void notifyListChange();
+        void showDoneSum(int sum);
 
-        void refreshComplete();
+        void addDoneDate(Calendar calendar);
     }
 
     interface Presenter extends AbstractPresenter<View> {
 
-        void getPlanList(boolean showLoading);
+        void getDoneDateList();
 
-        void setPlanDone(Plan plan);
+        void getDoneSum();
+
+        void addDoneDate(Calendar doneCalendar);
     }
 }
