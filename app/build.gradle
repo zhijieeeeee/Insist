@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -27,6 +31,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    // 输出apk名称为great_v1.0_wandoujia.apk
+                    def fileName = "insist_${defaultConfig.versionName}_${releaseTime()}.apk"
+                    outputFileName = fileName
+                }
+            }
         }
         debug {
             //设置debug测试使用的签名
