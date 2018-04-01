@@ -36,7 +36,7 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.all {
                     // 输出apk名称为great_v1.0_wandoujia.apk
-                    def fileName = "insist_${defaultConfig.versionName}_${releaseTime()}.apk"
+                    def fileName = "insist_v${defaultConfig.versionName}_${releaseTime()}.apk"
                     outputFileName = fileName
                 }
             }
