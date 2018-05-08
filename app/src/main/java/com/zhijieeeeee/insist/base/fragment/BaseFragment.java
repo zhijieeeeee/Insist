@@ -63,7 +63,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends AbstractBase
     }
 
     /**
-     * 注入所需依赖对象，调用getActivityComponent().inject(this);
+     * 注入所需依赖对象，调用getFragmentComponent().inject(this);
      */
     protected abstract void initInject();
 }
